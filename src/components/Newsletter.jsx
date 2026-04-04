@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 
 const Newsletter = () => {
   return (
-    <section className="py-24 bg-primary px-6 flex items-center justify-center border-t border-secondary/5">
+    <section className="py-24 relative bg-white px-6 flex items-center justify-center border-t border-secondary/5">
       <div className="container max-w-4xl text-center text-secondary">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
@@ -14,7 +14,7 @@ const Newsletter = () => {
         >
           Exclusive Membership
         </motion.p>
-        
+
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -26,11 +26,11 @@ const Newsletter = () => {
         </motion.h2>
 
         <motion.div
-           initial={{ opacity: 0, scale: 0.95 }}
-           whileInView={{ opacity: 1, scale: 1 }}
-           viewport={{ once: true }}
-           transition={{ delay: 0.2 }}
-           className="relative max-w-xl mx-auto"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="relative max-w-xl mx-auto"
         >
           <input
             type="email"

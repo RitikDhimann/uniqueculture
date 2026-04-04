@@ -32,8 +32,10 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'glass py-4 md:py-6' : 'bg-transparent py-6'
-                }`}
+            className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled 
+                ? 'glass py-4 md:py-6' 
+                : 'bg-transparent py-6'
+            }`}
         >
             <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
                 {/* Logo */}
@@ -41,9 +43,11 @@ const Navbar = () => {
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="text-2xl md:text-3xl font-heading font-black tracking-tighter cursor-pointer text-secondary flex items-center gap-2"
+                        className={`text-2xl md:text-3xl font-heading font-black tracking-tighter cursor-pointer transition-colors duration-300 flex items-center gap-2 ${
+                            isScrolled ? 'text-secondary' : 'text-secondary md:text-secondary max-md:text-white'
+                        }`}
                     >
-                        Unique <span className="text-secondary opacity-30">.Culture</span>
+                        Unique <span className={`${isScrolled ? 'text-secondary opacity-30' : 'text-secondary md:text-secondary opacity-30 max-md:text-white/30'}`}>.Culture</span>
                     </motion.div>
                 </Link>
 
@@ -67,7 +71,9 @@ const Navbar = () => {
                 </div>
 
                 {/* Icons */}
-                <div className="flex items-center space-x-4 md:space-x-8 text-secondary">
+                <div className={`flex items-center space-x-4 md:space-x-8 transition-colors duration-300 ${
+                    isScrolled ? 'text-secondary' : 'text-secondary md:text-secondary max-md:text-white'
+                }`}>
                     <motion.button
                         whileHover={{ scale: 1.1 }}
                         className="hover:opacity-60 transition-opacity hidden sm:block"
@@ -167,7 +173,7 @@ const Navbar = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
-            
+
             {/* Scroll Progress Bar - Industrial Minimalist */}
             <motion.div
                 className="absolute bottom-0 left-0 right-0 h-[3px] bg-secondary origin-left z-[100] hidden md:block"

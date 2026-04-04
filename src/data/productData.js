@@ -40,7 +40,7 @@ export const products = [
     name: 'Ghost White',
     price: '$110.00',
     category: 'TEES',
-    image: 'https://maggucultures.com/cdn/shop/files/1_3a40499e-7650-48e0-a937-231a47343e86.png?v=1732009212&width=493',
+    image: 'https://image.hm.com/assets/hm/14/66/146680daab01d2c5117e8ffcb06264d5f16816f0.jpg?imwidth=96',
     description: 'Pure aesthetic utility. This Ghost White tee is constructed with high-density fabric for a sharp, structural silhouette.',
     specs: ['280GSM COTTON', 'REINFORCED COLLAR', 'CLEAN FINISH SEAMS', 'ARCHITECTURAL FIT']
   },

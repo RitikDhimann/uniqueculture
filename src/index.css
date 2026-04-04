@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  --primary: #EAEAEA;
+  --primary: #ffffff;
   --secondary: #000000;
   --accent: #666666;
   --darkest: #333333;
@@ -15,6 +15,7 @@
   html {
     font-size: 16px;
   }
+
   @media (max-width: 640px) {
     html {
       font-size: 14px;
@@ -116,10 +117,23 @@ h3,
 }
 
 @keyframes scan {
-  0% { top: 0; opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { top: 100%; opacity: 0; }
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
 }
 
 .animate-scan {
@@ -145,8 +159,13 @@ h3,
 }
 
 @keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .animate-spin-slow {

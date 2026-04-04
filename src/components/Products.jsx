@@ -82,13 +82,13 @@ const Products = () => {
           </div>
 
           {/* View All Products Button */}
-          <div className="mt-32 flex justify-center">
+          <div className="mt-20 md:mt-32 flex justify-center">
             <Link 
               to="/collections"
-              className="group relative px-16 py-6 border-2 border-black overflow-hidden bg-white"
+              className="group relative px-10 py-4 border-2 border-black overflow-hidden bg-white"
             >
               <div className="absolute inset-0 bg-black translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-out" />
-              <span className="relative z-10 text-[11px] font-black uppercase tracking-[0.5em] text-black group-hover:text-white transition-colors duration-500">
+              <span className="relative z-10 text-[10px] font-black uppercase tracking-[0.4em] text-black group-hover:text-white transition-colors duration-500">
                 EXPLORE_FULL_ARCHIVE
               </span>
             </Link>
