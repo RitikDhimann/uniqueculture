@@ -6,7 +6,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // Components & Layout
 import Layout from './components/Layout';
-import ScrollToTop from './components/ScrollToTop';
 
 // Pages
 import Home from './pages/Home';
@@ -59,7 +58,6 @@ function App() {
 
     return (
         <Suspense fallback={<Loader />}>
-            <ScrollToTop />
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />

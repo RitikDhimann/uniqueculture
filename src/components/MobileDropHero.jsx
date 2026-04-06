@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-const mobileHeroImg = "https://maggucultures.com/cdn/shop/files/IMG_1835.png?v=1772782295&width=2000";
+import mobileHeroImg from '../assets/hero-bg-mobile.png';
 
 const MobileDropHero = () => {
   const [showOffer, setShowOffer] = useState(true);
@@ -29,7 +29,7 @@ const MobileDropHero = () => {
           className="text-center space-y-6"
         >
           {/* Main Title */}
-          <h1 className="text-5xl font-heading font-black tracking-tighter text-white leading-none filter drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+          <h1 className="text-5xl font-heading font-black tracking-tighter !text-white leading-none filter drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
             STANDARDS <br />
             DROP <br />
             LIVE NOW

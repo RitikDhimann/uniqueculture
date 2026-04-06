@@ -4,6 +4,9 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
 
+import mobileHeroGirlImg from '../assets/hero-bg-mobile.png';
+import desktopHeroGirlImg from '../assets/hero-bg-girl-desktop.png';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
@@ -63,7 +66,7 @@ const Hero = () => {
     }, []);
 
     const gridImages = [
-        "https://image.hm.com/assets/hm/df/1d/df1d5f40d03616e3515ec4f3ff8ca6dc6b3678ee.jpg?imwidth=820",
+        desktopHeroGirlImg,
         "https://image.hm.com/assets/hm/a3/21/a321819091904bf9e79be222d8395ad21d6aeb18.jpg?imwidth=820",
         'https://maggucultures.com/cdn/shop/files/Untitleddesign-9.png?v=1766118455&width=990',
         'https://image.hm.com/content/dam/ind-local-assets/IN_Ws23i_Teaser_2x3.jpg?imwidth=1024',
