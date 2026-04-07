@@ -75,7 +75,7 @@ const Hero = () => {
     return (
         <section
             ref={heroRef}
-            className="relative h-screen md:h-[330vh] w-full flex flex-col md:flex-row bg-primary overflow-hidden"
+            className="relative h-screen md:h-[345vh] w-full flex flex-col md:flex-row bg-primary overflow-hidden"
         >
             {/* Mobile Reveal View - NO TEXT, NO OPACITY */}
             <div className="md:hidden relative w-full h-full flex items-center justify-center overflow-hidden">
@@ -103,7 +103,7 @@ const Hero = () => {
             {/* Desktop Left Side: Image Grid */}
             <div
                 ref={leftRef}
-                className="hidden md:grid w-1/2 p-20 grid grid-cols-1 gap-20 relative z-10"
+                className="hidden md:grid mt-6 w-1/2 p-20 grid grid-cols-1 gap-20 relative z-10"
             >
                 {gridImages.map((src, i) => (
                     <motion.div
@@ -141,7 +141,7 @@ const Hero = () => {
                         ESTABLISHED .2026
                     </motion.p>
 
-                    <h1 className="text-[12vw] leading-[0.8] font-heading font-black tracking-tighter text-secondary mb-10">
+                    <h1 className="text-[7vw] leading-[1.1] font-heading tracking-widest text-secondary mb-10">
                         <span className="block">Unique</span>
                         <span className="block text-stroke-dark">.Culture</span>
                     </h1>

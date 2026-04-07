@@ -37,7 +37,7 @@ const Identity = () => {
                 {/* Hero section */}
                 <div className="max-w-4xl mb-24 md:mb-40">
                     <span className="text-[10px] font-mono tracking-[0.6em] text-accent font-bold uppercase mb-6 md:mb-8 block underline underline-offset-8">MANIFESTO // IDENTITY_V2</span>
-                    <h1 className="text-6xl md:text-[10rem] font-heading leading-[0.8] tracking-tighter mb-8 md:mb-12">
+                    <h1 className="text-3xl md:text-5xl font-heading leading-[0.8] tracking-widest mb-8 md:mb-12">
                         CULTURE<br /><span className="text-stroke-dark">AS_CODE</span>
                     </h1>
                     <p className="text-lg md:text-2xl font-mono uppercase tracking-widest text-secondary leading-relaxed border-l-4 border-secondary pl-6 md:pl-8">
@@ -69,7 +69,7 @@ const Identity = () => {
                 {/* Technical diagram section */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center mb-24 md:mb-40">
                     <div className="space-y-8 md:space-y-12">
-                        <h2 className="text-4xl md:text-6xl font-heading leading-none tracking-tighter">ANATOMY_OF_AN_ARTIFACT</h2>
+                        <h2 className="text-xl md:text-3xl font-heading leading-none tracking-widest">ANATOMY_OF_AN_ARTIFACT</h2>
                         <div className="space-y-6 md:space-y-8">
                             {[
                                 { t: 'REINFORCED_STITCHING', d: 'High-tenacity nylon thread for structural integrity.' },
@@ -111,7 +111,7 @@ const Identity = () => {
                 {/* Final Quote */}
                 <div className="py-24 md:py-40 text-center border-t-2 border-secondary">
                     <p className="text-[10px] font-mono tracking-[0.5em] text-accent uppercase mb-8 md:mb-12">JOIN_THE_Unique</p>
-                    <h2 className="text-5xl md:text-8xl font-heading leading-tight tracking-tighter max-w-5xl mx-auto">
+                    <h2 className="text-2xl md:text-4xl font-heading leading-tight tracking-widest max-w-5xl mx-auto">
                         TRUTH_IS_MEASURED <br />
                         IN <span className="text-stroke-dark italic">RESILIENCE.</span>
                     </h2>

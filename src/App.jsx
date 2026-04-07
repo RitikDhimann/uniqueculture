@@ -17,6 +17,7 @@ import Collections from './pages/Collections';
 import Identity from './pages/Identity';
 import Archive from './pages/Archive';
 import ProductDetail from './pages/ProductDetail';
+import Cart from './pages/Cart';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,9 +28,9 @@ const Loader = () => (
         className="fixed inset-0 z-[100] bg-primary flex flex-col items-center justify-center p-6"
     >
         <motion.div
-            initial={{ y: 20, opacity: 0 }}
+            initial={{ y: 0, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="text-6xl md:text-8xl font-heading font-black tracking-tighter text-secondary"
+            className="text-3xl md:text-5xl font-heading tracking-widest text-secondary"
         >
             Unique<span className="text-stroke-dark">Culture</span>
         </motion.div>
@@ -69,6 +70,7 @@ function App() {
                     <Route path="identity" element={<Identity />} />
                     <Route path="archive" element={<Archive />} />
                     <Route path="product/:id" element={<ProductDetail />} />
+                    <Route path="cart" element={<Cart />} />
                 </Route>
             </Routes>
         </Suspense>

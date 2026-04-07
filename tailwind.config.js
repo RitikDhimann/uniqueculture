@@ -13,8 +13,8 @@ export default {
         darkest: "#333333", // Dark Grey
       },
       fontFamily: {
-        sans: ["Inter", "Helvetica", "Arial", "sans-serif"],
-        heading: ["Bebas Neue", "Impact", "sans-serif"],
+        sans: ["Plus Jakarta Sans", "Inter", "sans-serif"],
+        heading: ["Montserrat", "Impact", "sans-serif"],
         mono: ["Space Mono", "monospace"],
       },
       boxShadow: {

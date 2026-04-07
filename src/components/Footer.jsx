@@ -20,7 +20,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-16 mb-20 md:mb-32">
           {/* Brand Info */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <h2 className="text-3xl md:text-4xl font-heading font-black mb-6 md:mb-10 tracking-tighter uppercase">
+            <h2 className="text-xl md:text-2xl font-heading mb-6 md:mb-10 tracking-widest uppercase">
               Unique <span className="opacity-30">.Culture</span>
             </h2>
             <div className="space-y-4 md:space-y-6 text-black text-[9px] md:text-[10px] font-mono tracking-widest uppercase leading-loose">

@@ -3,13 +3,16 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingBag, ArrowLeft, Plus, Minus, Share2, Info } from 'lucide-react';
 import { products } from '../data/productData';
+import { useCart } from '../context/CartContext';
 
 const ProductDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const { addToCart } = useCart();
     const [product, setProduct] = useState(null);
     const [quantity, setQuantity] = useState(1);
     const [selectedSize, setSelectedSize] = useState('M');
+    const [isAdded, setIsAdded] = useState(false);
 
     useEffect(() => {
         const foundProduct = products.find(p => p.id === parseInt(id));
@@ -17,6 +20,12 @@ const ProductDetail = () => {
             setProduct(foundProduct);
         }
     }, [id]);
+
+    const handleAddToCart = () => {
+        addToCart(product, quantity, selectedSize);
+        setIsAdded(true);
+        setTimeout(() => setIsAdded(false), 2000);
+    };
 
     if (!product) {
         return (
@@ -70,7 +79,7 @@ const ProductDetail = () => {
                              <span className="text-[10px] font-mono tracking-[0.4em] text-accent font-bold uppercase">
                                 {product.category} — MAGGU_IDENTITY
                              </span>
-                             <h1 className="text-5xl md:text-7xl font-heading font-black tracking-tighter text-secondary leading-none">
+                             <h1 className="text-xl md:text-2xl font-heading tracking-widest text-secondary leading-none">
                                 {product.name.toUpperCase()}
                              </h1>
                         </div>
@@ -124,24 +133,34 @@ const ProductDetail = () => {
 
                     {/* Purchase Controls */}
                     <div className="pt-12 flex flex-col sm:flex-row gap-6">
-                        <div className="flex items-center border-2 border-secondary/10 px-4 h-16">
+                        <div className="flex items-center border-2 border-secondary/10 px-4 h-16 bg-white/50">
                             <button 
                                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                                className="p-2 hover:text-accent transition-colors"
+                                className="p-2 text-secondary hover:text-accent transition-colors"
                             >
                                 <Minus size={18} />
                             </button>
-                            <span className="w-12 text-center font-mono text-lg">{quantity}</span>
+                            <span className="w-12 text-center font-mono text-lg text-secondary font-bold">{quantity}</span>
                             <button 
                                 onClick={() => setQuantity(quantity + 1)}
-                                className="p-2 hover:text-accent transition-colors"
+                                className="p-2 text-secondary hover:text-accent transition-colors"
                             >
                                 <Plus size={18} />
                             </button>
                         </div>
                         
-                        <button className="flex-1 bg-secondary text-primary font-heading font-black text-xl tracking-tighter flex items-center justify-center gap-3 hover:bg-secondary/90 transition-all h-16">
-                            <ShoppingBag size={20} /> ADD_TO_CART_ST_26
+                        <button 
+                            onClick={handleAddToCart}
+                            className={`flex-1 ${isAdded ? 'bg-green-600' : 'bg-secondary'} text-white font-heading text-sm md:text-md tracking-widest flex items-center justify-center gap-3 hover:opacity-90 transition-all h-14 uppercase`}
+                        >
+                            {isAdded ? (
+                                <span className="text-white">ADDED_SUCCESSFULLY</span>
+                            ) : (
+                                <>
+                                    <ShoppingBag size={18} className="text-white" />
+                                    <span className="text-white">ADD_TO_CART_ST_26</span>
+                                </>
+                            )}
                         </button>
                     </div>
 

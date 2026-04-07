@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { ShoppingBag, Search, Menu, X, User } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const navigate = useNavigate();
+    const { cartCount } = useCart();
 
     const { scrollYProgress } = useScroll();
     const scaleX = useSpring(scrollYProgress, {
@@ -24,10 +26,9 @@ const Navbar = () => {
     }, []);
 
     const navLinks = [
-        { name: 'New Arrivals', href: '/new-arrivals' },
-        { name: 'Collections', href: '/collections' },
-        { name: 'Identity', href: '/identity' },
-        { name: 'Archive', href: '/archive' },
+        { name: 'Men', href: '/collections?type=men' },
+        { name: 'Women', href: '/collections?type=women' },
+        { name: 'Footwear', href: '/collections?type=footwear' },
     ];
 
     return (
@@ -43,7 +44,7 @@ const Navbar = () => {
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className={`text-2xl md:text-3xl font-heading font-black tracking-tighter cursor-pointer transition-colors duration-300 flex items-center gap-2 ${
+                        className={`text-lg md:text-xl font-heading tracking-widest cursor-pointer transition-colors duration-300 flex items-center gap-1 ${
                             isScrolled ? 'text-secondary' : 'text-secondary md:text-secondary max-md:text-white'
                         }`}
                     >
@@ -94,10 +95,11 @@ const Navbar = () => {
                     <motion.button
                         whileHover={{ scale: 1.1 }}
                         className="relative hover:opacity-60 transition-opacity"
+                        onClick={() => navigate('/cart')}
                     >
                         <ShoppingBag size={18} md:size={20} strokeWidth={2.5} />
                         <span className="absolute -top-2 -right-2 bg-secondary text-primary text-[8px] font-black w-4 h-4 flex items-center justify-center">
-                            0
+                            {cartCount}
                         </span>
                     </motion.button>
 

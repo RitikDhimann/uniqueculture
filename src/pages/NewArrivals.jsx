@@ -17,7 +17,7 @@ const NewArrivals = () => {
                 <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 gap-6 md:gap-8">
                     <div className="space-y-4">
                         <span className="text-[10px] font-mono tracking-[0.4em] text-accent uppercase">LATEST_DROP — PHASE_04</span>
-                        <h1 className="text-6xl md:text-9xl font-heading leading-[0.8] tracking-tighter">NEW_ARRIVALS</h1>
+                        <h1 className="text-xl md:text-3xl font-heading leading-[0.8] tracking-widest">NEW_ARRIVALS</h1>
                     </div>
                     <div className="flex items-center gap-6 border-t border-secondary/10 pt-4 w-full md:w-auto">
                         <button className="flex items-center gap-2 text-[10px] font-mono tracking-widest uppercase hover:opacity-100 opacity-60">
@@ -58,12 +58,14 @@ const NewArrivals = () => {
                             </div>
                             
                             <div className="space-y-1 md:space-y-2">
-                                <div className="flex flex-col md:flex-row justify-between items-start">
-                                    <div>
-                                        <p className="text-[8px] md:text-[10px] font-mono tracking-widest text-accent uppercase mb-1">{product.category}</p>
-                                        <h3 className="text-lg md:text-xl font-heading tracking-tight leading-none group-hover:underline underline-offset-4">{product.name}</h3>
+                                <div className="flex flex-col justify-between items-start">
+                                    <div className="w-full">
+                                        <p className="text-[7px] md:text-[9px] font-mono tracking-[0.2em] text-accent uppercase mb-1">{product.category}</p>
+                                        <div className="flex justify-between items-baseline gap-4 w-full">
+                                            <h3 className="text-xs md:text-sm font-heading tracking-widest leading-tight group-hover:underline underline-offset-4 flex-1">{product.name}</h3>
+                                            <span className="text-xs md:text-sm font-heading tracking-widest whitespace-nowrap">{product.price}</span>
+                                        </div>
                                     </div>
-                                    <span className="text-md md:text-lg font-heading mt-1 md:mt-0">{product.price}</span>
                                 </div>
                                 <div className="w-full h-[1px] bg-secondary/10 group-hover:bg-secondary/40 transition-colors" />
                             </div>
@@ -77,7 +79,7 @@ const NewArrivals = () => {
                     <motion.button 
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="bg-secondary text-primary font-heading text-3xl px-12 py-4 flex items-center gap-4 mx-auto group shadow-xl"
+                        className="bg-secondary text-primary font-heading text-[10px] md:text-xs px-10 py-4 flex items-center gap-4 mx-auto group shadow-sm transition-all hover:shadow-xl"
                     >
                         VIEW_FULL_DATABASE
                         <ArrowRight className="group-hover:translate-x-2 transition-transform" />

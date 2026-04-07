@@ -20,7 +20,7 @@ const Archive = () => {
                         <span className="text-[10px] font-mono tracking-[0.4em] text-accent uppercase flex items-center gap-2">
                             <Database size={12} /> SYSTEM_ARCHIVE — READ_ONLY
                         </span>
-                        <h1 className="text-6xl md:text-9xl font-heading leading-none tracking-tighter uppercase">THE_VAULT</h1>
+                        <h1 className="text-2xl md:text-4xl font-heading leading-none tracking-widest uppercase">THE_VAULT</h1>
                     </div>
                     <div className="relative w-full md:w-80 group">
                         <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-secondary opacity-30 group-focus-within:opacity-100 transition-opacity" size={18} />
@@ -76,7 +76,7 @@ const Archive = () => {
                 {/* Grid Section */}
                 <div className="space-y-8 md:space-y-12">
                     <div className="flex items-center gap-4">
-                        <h3 className="text-2xl md:text-4xl font-heading tracking-tight uppercase">RESTRICTED_ACCESS_LOGS</h3>
+                        <h3 className="text-md md:text-xl font-heading tracking-widest uppercase">RESTRICTED_ACCESS_LOGS</h3>
                         <div className="flex-grow h-[1px] bg-secondary/10" />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 text-secondary">

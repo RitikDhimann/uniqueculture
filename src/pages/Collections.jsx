@@ -1,112 +1,164 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
-
-const collections = [
-    {
-        id: 'C1',
-        title: 'CORE_ESSENTIALS',
-        phase: 'PHASE_01',
-        desc: 'The foundational layer of the Culture Unique ecosystem. Minimalist silhouettes optimized for daily utility.',
-        img: 'https://maggucultures.com/cdn/shop/files/CE92B932-DDCA-4A91-858A-49C3481DFFDE.png?v=1757007204&width=990',
-        color: 'bg-secondary/5'
-    },
-    {
-        id: 'C2',
-        title: 'INDUSTRIAL_MODULAR',
-        phase: 'PHASE_02',
-        desc: 'Technical outerwear featuring multi-pocket configurations and weatherproof membrane technology.',
-        img: 'https://maggucultures.com/cdn/shop/files/6.png?v=1727953813&width=493',
-        color: 'bg-secondary/10'
-    },
-    {
-        id: 'C3',
-        title: 'URBAN_UTILITY',
-        phase: 'PHASE_03',
-        desc: 'Adaptable gear designed for high-mobility metropolitan envCulturements. High-tenacity textiles and ergonomic tailoring.',
-        img: 'https://maggucultures.com/cdn/shop/files/2_70a02982-07e8-4370-a12a-14ab936b2dd4.png?v=1772782742&width=493',
-        color: 'bg-secondary/5'
-    }
-];
+import React, { useState, useMemo, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Filter, ChevronRight, ShoppingBag } from 'lucide-react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { products } from '../data/productData';
+import { useCart } from '../context/CartContext';
 
 const Collections = () => {
+    const [searchParams] = useSearchParams();
+    const initialType = searchParams.get('type')?.toUpperCase() || 'ALL';
+    
+    const [selectedCategory, setSelectedCategory] = useState(initialType);
+    const { addToCart } = useCart();
+
+    // Sync state with URL params
+    useEffect(() => {
+        const type = searchParams.get('type')?.toUpperCase();
+        if (type) {
+            setSelectedCategory(type);
+        }
+    }, [searchParams]);
+
+    const categories = ['ALL', 'MEN', 'WOMEN', 'HOODIES', 'TEES', 'OUTERWEAR', 'FOOTWEAR'];
+
+    const filteredProducts = useMemo(() => {
+        if (selectedCategory === 'ALL') return products;
+        
+        // Filter by Gender
+        if (selectedCategory === 'MEN' || selectedCategory === 'WOMEN') {
+            return products.filter(p => p.gender === selectedCategory || p.gender === 'UNISEX');
+        }
+        
+        // Filter by Category
+        return products.filter(p => p.category.toUpperCase() === selectedCategory);
+    }, [selectedCategory]);
+
+    const handleQuickAdd = (e, product) => {
+        e.preventDefault();
+        e.stopPropagation();
+        addToCart(product, 1, 'M'); // Default size M for quick add
+    };
+
     return (
-        <div className="min-h-screen bg-primary pt-32 pb-20">
-            <div className="container mx-auto px-4 md:px-6">
-                {/* Intro */}
-                <div className="mb-16 md:mb-24 flex flex-col md:flex-row justify-between items-start gap-8 md:gap-12 border-b-2 border-secondary pb-12 md:pb-16">
-                    <div className="max-w-3xl">
-                        <span className="text-[10px] font-mono tracking-[0.4em] text-accent uppercase mb-4 block">ARCHITECTURE — SYSTEM_INDEX</span>
-                        <h1 className="text-6xl md:text-9xl font-heading leading-tight md:leading-none tracking-tighter mb-4 md:mb-8">COLLECTIONS</h1>
+        <div className="min-h-screen bg-primary pt-32 pb-20 px-4 md:px-6">
+            <div className="container mx-auto">
+                {/* Header Section */}
+                <div className="mb-12 md:mb-20 flex flex-col md:flex-row justify-between items-end gap-6 border-b-2 border-secondary pb-10">
+                    <div className="space-y-4">
+                        <span className="text-[10px] font-mono tracking-[0.4em] text-accent uppercase">SYSTEM_INDEX // ARCHITECTURE</span>
+                        <h1 className="text-3xl md:text-5xl font-heading tracking-widest text-secondary leading-none uppercase">COLLECTIONS</h1>
                     </div>
-                    <div className="w-full md:w-1/3 pt-4 md:pt-12">
+                    <div className="w-full md:w-1/3">
                         <p className="text-[10px] md:text-xs font-mono uppercase tracking-[0.2em] text-accent leading-relaxed">
-                            A systematic catalog of Unique .Culture artifacts. Each collection represents a specific phase in our evolution of technical precision and urban adaptation.
+                            A systematic catalog of Unique .Culture artifacts. Each piece is an engineered element of our modern existence framework.
                         </p>
                     </div>
                 </div>
 
-                {/* Collection Chapters */}
-                <div className="space-y-24 md:space-y-40">
-                    {collections.map((coll, i) => (
-                        <div key={coll.id} className={`flex flex-col ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-10 md:gap-12 lg:gap-24 items-center`}>
-                            {/* Visual Side */}
-                            <div className="w-full lg:w-1/2 relative group">
-                                <motion.div
-                                    initial={{ scale: 0.95, opacity: 0 }}
-                                    whileInView={{ scale: 1, opacity: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                                    className={`relative aspect-square md:aspect-video lg:aspect-square overflow-hidden brutalist-card ${coll.color}`}
-                                >
-                                    <img
-                                        src={coll.img}
-                                        alt={coll.title}
-                                        className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
-                                    />
-                                    {/* Abstract Overlay */}
-                                    <div className="absolute inset-0 border-[10px] md:border-[20px] border-primary/20 pointer-events-none group-hover:border-primary/5 transition-all duration-700" />
-                                </motion.div>
-                                <div className="absolute -bottom-4 -right-4 md:bottom-12 md:right-12 z-20">
-                                    <motion.div
-                                        whileHover={{ rotate: 45, scale: 1.1 }}
-                                        className="w-16 h-16 md:w-24 md:h-24 bg-secondary flex items-center justify-center text-primary cursor-pointer shadow-2xl transition-transform"
+                <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
+                    {/* Sidebar / Mobile Category Bar */}
+                    <aside className="w-full lg:w-64 shrink-0">
+                        <div className="sticky top-32">
+                            <div className="flex items-center gap-3 mb-8 opacity-40">
+                                <Filter size={14} />
+                                <span className="text-[10px] font-mono tracking-[0.4em] uppercase">Refine_By_Phase</span>
+                            </div>
+                            
+                            {/* Desktop: Vertical List | Mobile: Horizontal Scroll */}
+                            <div className="flex lg:flex-col overflow-x-auto lg:overflow-x-visible pb-4 lg:pb-0 gap-4 lg:gap-8 scrollbar-hide no-scrollbar">
+                                {categories.map((cat) => (
+                                    <button
+                                        key={cat}
+                                        onClick={() => setSelectedCategory(cat)}
+                                        className={`group relative flex items-center justify-between whitespace-nowrap lg:whitespace-normal transition-all duration-300 ${
+                                            selectedCategory === cat 
+                                            ? 'text-secondary' 
+                                            : 'text-accent opacity-40 hover:opacity-100'
+                                        }`}
                                     >
-                                        <ArrowUpRight size={30} md:size={40} />
-                                    </motion.div>
-                                </div>
+                                        <span className="text-[11px] md:text-xs font-heading font-bold tracking-[0.4em] uppercase py-2">
+                                            {cat.replace('_', ' ')}
+                                        </span>
+                                        <div className={`hidden lg:block w-8 h-[1px] bg-secondary transition-all duration-500 scale-x-0 origin-right group-hover:scale-x-100 ${
+                                            selectedCategory === cat ? 'scale-x-100' : ''
+                                        }`} />
+                                    </button>
+                                ))}
                             </div>
 
-                            {/* Content Side */}
-                            <div className="w-full lg:w-1/2 space-y-6 md:space-y-8">
-                                <div className="space-y-2 md:space-y-4">
-                                    <div className="flex items-center gap-4">
-                                        <span className="text-3xl md:text-4xl font-heading text-secondary/30">{coll.id}</span>
-                                        <span className="w-8 md:w-12 h-[2px] bg-secondary/10" />
-                                        <span className="text-[8px] md:text-[10px] font-mono tracking-[0.4em] text-accent uppercase font-bold">{coll.phase}</span>
-                                    </div>
-                                    <h2 className="text-5xl md:text-7xl font-heading leading-none tracking-tighter">{coll.title}</h2>
-                                </div>
-                                <p className="text-sm md:text-base font-mono uppercase tracking-widest text-accent leading-relaxed max-w-lg">
-                                    {coll.desc}
+                            <div className="hidden lg:block mt-20 pt-10 border-t border-secondary/10 space-y-4">
+                                <span className="text-[9px] font-mono tracking-[0.4em] text-accent uppercase block">TECHNICAL_ADVISORY</span>
+                                <p className="text-[9px] font-sans text-accent leading-relaxed tracking-wide">
+                                    All artifacts in the system are produced under high-tenacity production protocols. Quality confirmed.
                                 </p>
-                                <div className="pt-4 md:pt-8 flex flex-wrap gap-3 md:gap-4">
-                                    {['OUTERWEAR', 'ACCESSORIES', 'FOOTWEAR'].map(tag => (
-                                        <span key={tag} className="px-3 py-1 md:px-4 md:py-1.5 border border-secondary/10 text-[8px] md:text-[10px] font-mono tracking-widest uppercase hover:bg-secondary hover:text-primary transition-colors cursor-pointer">
-                                            {tag}
-                                        </span>
-                                    ))}
-                                </div>
-                                <motion.button
-                                    whileHover={{ x: 10 }}
-                                    className="pt-8 md:pt-12 text-xl md:text-2xl font-heading underline underline-offset-8 hover:text-accent transition-all flex items-center gap-4"
-                                >
-                                    EXPLORE_COLLECTION
-                                    <ArrowUpRight size={20} md:size={24} />
-                                </motion.button>
                             </div>
                         </div>
-                    ))}
+                    </aside>
+
+                    {/* Product Grid Container */}
+                    <main className="flex-1">
+                        <AnimatePresence mode='wait'>
+                            <motion.div
+                                key={selectedCategory}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                                className="grid grid-cols-2 xl:grid-cols-3 gap-x-4 md:gap-x-8 gap-y-12 md:gap-y-20"
+                            >
+                                {filteredProducts.map((product, i) => (
+                                    <Link 
+                                        to={`/product/${product.id}`} 
+                                        key={product.id}
+                                        className="group cursor-pointer flex flex-col brutalist-card p-3 bg-white"
+                                    >
+                                        <div className="relative aspect-[3/4] bg-[#F3F3F3] overflow-hidden mb-4 md:mb-6">
+                                            <img 
+                                                src={product.image} 
+                                                alt={product.name} 
+                                                className="w-full h-full object-cover mono-img"
+                                            />
+                                            {/* Corner Phase Indicator */}
+                                            <div className="absolute top-0 right-0 p-2 md:p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <div className="p-2 border border-secondary/10 bg-primary/20 backdrop-blur-sm rounded-full">
+                                                    <ArrowRight size={14} className="-rotate-45" />
+                                                </div>
+                                            </div>
+                                            {/* Quick Add Overlay */}
+                                            <div className="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/5 transition-all">
+                                                <button 
+                                                    onClick={(e) => handleQuickAdd(e, product)}
+                                                    className="absolute bottom-4 left-4 right-4 bg-primary text-secondary py-3 text-[9px] font-mono tracking-[0.3em] uppercase opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 font-bold border border-secondary/10 backdrop-blur-md z-10"
+                                                >
+                                                    QUICK_ADD_ST_26
+                                                </button>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="space-y-1 px-1">
+                                            <p className="text-[7px] md:text-[8px] font-mono tracking-[0.2em] text-accent uppercase">{product.category}</p>
+                                            <div className="flex justify-between items-baseline gap-2">
+                                                <h3 className="text-xs md:text-sm font-heading tracking-widest text-secondary flex-1">
+                                                    {product.name}
+                                                </h3>
+                                                <span className="text-xs md:text-sm font-heading tracking-widest text-secondary/60 whitespace-nowrap">{product.price}</span>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                ))}
+                            </motion.div>
+                        </AnimatePresence>
+
+                        {/* Empty System State */}
+                        {filteredProducts.length === 0 && (
+                            <div className="h-[50vh] flex flex-col items-center justify-center text-center space-y-6">
+                                <span className="text-accent font-mono text-[10px] tracking-[0.5em] uppercase">SYSTEM_ERROR // NO_ARTIFACTS_FOUND</span>
+                                <h2 className="text-2xl font-heading text-secondary opacity-20">DATA_REDUNDANT</h2>
+                                <button onClick={() => setSelectedCategory('ALL')} className="text-[9px] font-mono tracking-widest uppercase underline underline-offset-4 hover:text-accent">Reset_System</button>
+                            </div>
+                        )}
+                    </main>
                 </div>
             </div>
         </div>
