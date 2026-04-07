@@ -69,16 +69,8 @@ const IndustrialMotion = () => {
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
-        <motion.div 
-            animate={{ x: isPaused ? undefined : ['0%', '-50%'] }}
-            transition={{ 
-                x: {
-                    repeat: Infinity,
-                    duration: 30, // Control speed here
-                    ease: "linear"
-                }
-            }}
-            className="flex gap-4 md:gap-8 pr-4 md:pr-8"
+        <div 
+            className={`flex gap-4 md:gap-8 pr-4 md:pr-8 animate-marquee ${isPaused ? 'pause-marquee' : ''}`}
         >
           {duplicatedAssets.map((asset, i) => (
             <div 
@@ -110,7 +102,7 @@ const IndustrialMotion = () => {
                 <div className="absolute inset-0 pointer-events-none opacity-10 group-hover:opacity-20 transition-opacity bg-[url('https://www.transparenttextures.com/patterns/graphy.png')] " />
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
 
       {/* Footer System Info */}
